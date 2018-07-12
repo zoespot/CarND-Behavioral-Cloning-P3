@@ -4,15 +4,20 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.utils import shuffle
 
-
+#Read in datset from clockwise and counter clockwise runs
 lines=[]
-dirsrc =['slow','run_n2'] #'run','run_n1','data','run_nspecial','runspecial','recovery','recovery4','recovery2','recovery3','fast','slow','bridge','run_n2']
+dirsrc =['slow','run_n2'] 
+# Dataset not used: 'run','run_n1','data','run_nspecial','runspecial','recovery','recovery4','recovery2','recovery3','fast','slow','bridge','run_n2','lap1_special','lap1_special2','lap1_bridge'
+
 for i in range(len(dirsrc)):
 	csvname = dirsrc[i]+'/driving_log.csv'
 	with open(csvname, 'r') as csvfile: 
 		csvreader =csv.reader(csvfile)
 		for line in csvreader:
 			lines.append(line)
+
+#Read in images and steering angles
+#add +0.2 to left image, -0.2 to right image
 images =[]
 measurements =[]
 for line in lines:
@@ -33,6 +38,7 @@ for line in lines:
 X_train=np.array(images)
 y_train=np.array(measurements)
 
+#Augumented data with horizontal flipping 
 augmented_images=[]
 augmented_measurements=[]
 for image, measurement in zip(images,measurements):
@@ -51,6 +57,9 @@ from keras.models import Sequential
 from keras.layers import Flatten, Dense, Lambda, Dropout
 from keras.layers.convolutional import Convolution2D, Cropping2D
 from keras.layers.pooling import MaxPooling2D
+
+#CNN from Nvidia model with cropping and normalization
+#add one layer dropout 
 keep=0.5
 model = Sequential()
 model.add(Cropping2D(cropping = ((70,25),(0,0)), input_shape = (160,320,3)))
@@ -68,8 +77,8 @@ model.add(Dense(10))
 model.add(Dense(1))
 model.summary()
 
+#Keras adam optimizer, batch_size, learning rate default
 model.compile(optimizer='adam',loss='mse')
-model.fit(X_train_augmented, y_train_augmented, validation_split=0.2,shuffle=True,nb_epoch=2)
-#model.fit(X_train, y_train, validation_split=0.2,shuffle=True,nb_epoch=3)
+model.fit(X_train_augmented, y_train_augmented, validation_split=0.2,shuffle=True,nb_epoch=3)
 
-model.save("model22.h5")
+model.save("model_track1.h5")
