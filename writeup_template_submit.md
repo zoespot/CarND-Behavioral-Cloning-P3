@@ -135,6 +135,7 @@ To capture good driving behavior, I first recorded two laps on track one using c
 ![center](https://github.com/zoespot/CarND-Behavioral-Cloning-P3/blob/master/examples/center_2018_07_08_20_32_18_716.jpg)
 ![left](https://github.com/zoespot/CarND-Behavioral-Cloning-P3/blob/master/examples/left_2018_07_08_20_32_18_716.jpg)
 ![right](https://github.com/zoespot/CarND-Behavioral-Cloning-P3/blob/master/examples/right_2018_07_08_20_32_18_716.jpg)
+
 The left camera image is used with steering angle correction of +0.2, and right camera image with correction of -0.2. Correction 0.2 is chosen based on fine tuning around small angles.
 
 I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to recovery from both biased positions. These images show what a recovery looks like starting from left and right respectively:
