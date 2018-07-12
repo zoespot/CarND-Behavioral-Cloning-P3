@@ -131,6 +131,7 @@ Here is a visualization of the architecture:
 #### 3. Creation of the Training Set & Training Process
 
 To capture good driving behavior, I first recorded two laps on track one using center lane driving. Here are example images of center lane driving from cetner/left/right cameras:
+
 ![center](https://github.com/zoespot/CarND-Behavioral-Cloning-P3/blob/master/examples/center_2018_07_08_20_32_18_716.jpg)
 ![left](https://github.com/zoespot/CarND-Behavioral-Cloning-P3/blob/master/examples/left_2018_07_08_20_32_18_716.jpg)
 ![right](https://github.com/zoespot/CarND-Behavioral-Cloning-P3/blob/master/examples/right_2018_07_08_20_32_18_716.jpg)
@@ -139,7 +140,6 @@ The left camera image is used with steering angle correction of +0.2, and right 
 I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to recovery from both biased positions. These images show what a recovery looks like starting from left and right respectively:
 
 ![recovery-left](https://github.com/zoespot/CarND-Behavioral-Cloning-P3/blob/master/examples/center_2018_07_08_21_54_49_066.jpg)
-
 ![recovery-right](https://github.com/zoespot/CarND-Behavioral-Cloning-P3/blob/master/examples/center_2018_07_09_19_56_07_744.jpg)
 
 Then I repeated this process on track two in order to get more data points.
