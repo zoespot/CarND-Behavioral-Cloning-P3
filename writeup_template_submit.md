@@ -191,3 +191,16 @@ Epoch 3/3
 2. Further improvement ideas:
   * In order to achieve a unified model for both tracks or even unknown tracks, high quality training dataset might be needed. It might be done by writing a program to calibrate the steering angle from the images and knowledge of the known tracks, instead of relying on one human judgement at one scene. Or we need to manually analyze every error image to figure out the cause.
   * Alternatively construct a more robust neural network architecture to tolerate human mistakes
+
+---
+### Content added based on project submission feedback
+* Add activation for Dense layer too
+  * Runs great on track2 with barely touching the right border at the dead-trun
+  * Hit right on track1, probably because it's trained in track2 data to ride on top of the middle lane line
+* Add Batch Normalization before activation
+  * even worse for track1, hit right immediately, also fail on track2
+* Use Nadam (Nesterov momentum based Adam) optimizer instead of Adam
+* Use ELU (exponential linear unit) instead of Relu
+  * may converge faster, need to upgrade Keras from v1.2.1 to 2.2
+  * keras v2.2 runs slow with fit generator and it doesn't run with drive.py
+* Use comma ai architecture instead of Nivida architecture
